@@ -163,7 +163,7 @@ jobs:
         echo "CONFIG_FIRMWARE_INCLUDE_KOOLPROXY=n" >> .config   #广告过滤koolproxy
         echo "CONFIG_FIRMWARE_INCLUDE_ADGUARDHOME=n" >> .config #广告过滤adguardhome
         #USB相关、下载软件
-        echo "CONFIG_FIRMWARE_INCLUDE_QOS=n" >> .config        ##QOS~0.2MB
+        echo "CONFIG_FIRMWARE_INCLUDE_QOS=y" >> .config        ##QOS~0.2MB
         echo "CONFIG_FIRMWARE_INCLUDE_SMBD=y" >> .config       #开启smaba和WINS服务
         echo "CONFIG_FIRMWARE_INCLUDE_SMBD36=y" >> .config     #升级samba3为smaba3.6
         echo "CONFIG_FIRMWARE_INCLUDE_FTPD=y" >> .config       #开启FTP服务器
@@ -211,16 +211,16 @@ jobs:
         echo "CONFIG_FIRMWARE_INCLUDE_RTL_SDR=y" >> .config
         echo "CONFIG_FIRMWARE_INCLUDE_DUMP1090=y" >> .config
         #CAKE 建立在 fq_codel 的成熟基础上，是一种最先进的主动队列管理 (AQM) 技术
-        echo "CONFIG_FIRMWARE_INCLUDE_SCH_CODEL=y" >> .config
-        echo "CONFIG_FIRMWARE_INCLUDE_SCH_FQ_CODEL=y" >> .config
-        echo "CONFIG_FIRMWARE_INCLUDE_SCH_CAKE=y" >> .config
+        #echo "CONFIG_FIRMWARE_INCLUDE_SCH_CODEL=y" >> .config
+        #echo "CONFIG_FIRMWARE_INCLUDE_SCH_FQ_CODEL=y" >> .config
+        #echo "CONFIG_FIRMWARE_INCLUDE_SCH_CAKE=y" >> .config
         #################################################################
         sudo ./clear_tree
         sudo ./build_firmware_modify $TNAME 0
         sudo mv -f images/*.trx /opt/images/
         #cp -f .config /opt/images/${TNAME}.config
         echo "build_time=$(date '+%Y年%m月%d日%H:%M:%S' | jq -sRr @uri)" >> $GITHUB_ENV
-        echo "tag=$(date '+%Y-%m-%d')" >> $GITHUB_ENV
+        echo "tag=$TNAME $(date '+%Y-%m-%d')" >> $GITHUB_ENV
     - name : Upload packages
       uses: actions/upload-artifact@master
       if: always()   
@@ -234,6 +234,6 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         body: |
            > ### ![](https://img.shields.io/badge/%E7%BC%96%E8%AF%91%E6%97%B6%E9%97%B4-${{ env.build_time }}-8267?logo=github&labelColor=%E9%A1%BB)![](https://img.shields.io/github/downloads/${{ github.repository }}/${{ env.tag }}/total?label=%E4%B8%8B%E8%BD%BD%E6%AC%A1%E6%95%B0&logo=github) 
-
+             PADAVAN-CAKE
         tag_name: ${{ env.tag }}
         files: /opt/images/*
