@@ -1,4 +1,4 @@
-name: Build E8820s
+name: E8820s
 
 on: 
   workflow_dispatch:
@@ -163,7 +163,7 @@ jobs:
         echo "CONFIG_FIRMWARE_INCLUDE_KOOLPROXY=n" >> .config   #广告过滤koolproxy
         echo "CONFIG_FIRMWARE_INCLUDE_ADGUARDHOME=n" >> .config #广告过滤adguardhome
         #USB相关、下载软件
-        echo "CONFIG_FIRMWARE_INCLUDE_QOS=y" >> .config        ##QOS~0.2MB
+        echo "CONFIG_FIRMWARE_INCLUDE_QOS=n" >> .config        ##QOS~0.2MB
         echo "CONFIG_FIRMWARE_INCLUDE_SMBD=y" >> .config       #开启smaba和WINS服务
         echo "CONFIG_FIRMWARE_INCLUDE_SMBD36=y" >> .config     #升级samba3为smaba3.6
         echo "CONFIG_FIRMWARE_INCLUDE_FTPD=y" >> .config       #开启FTP服务器
@@ -210,6 +210,10 @@ jobs:
         #USB电视棒服务
         echo "CONFIG_FIRMWARE_INCLUDE_RTL_SDR=y" >> .config
         echo "CONFIG_FIRMWARE_INCLUDE_DUMP1090=y" >> .config
+        #CAKE 建立在 fq_codel 的成熟基础上，是一种最先进的主动队列管理 (AQM) 技术
+        echo "CONFIG_FIRMWARE_INCLUDE_SCH_CODEL=y" >> .config
+        echo "CONFIG_FIRMWARE_INCLUDE_SCH_FQ_CODEL=y" >> .config
+        echo "CONFIG_FIRMWARE_INCLUDE_SCH_CAKE=y" >> .config
         #################################################################
         sudo ./clear_tree
         sudo ./build_firmware_modify $TNAME 0
@@ -231,6 +235,5 @@ jobs:
         body: |
            > ### ![](https://img.shields.io/badge/%E7%BC%96%E8%AF%91%E6%97%B6%E9%97%B4-${{ env.build_time }}-8267?logo=github&labelColor=%E9%A1%BB)![](https://img.shields.io/github/downloads/${{ github.repository }}/${{ env.tag }}/total?label=%E4%B8%8B%E8%BD%BD%E6%AC%A1%E6%95%B0&logo=github) 
 
-           `型号.config` 是集成的插件模板
         tag_name: ${{ env.tag }}
         files: /opt/images/*
