@@ -15,7 +15,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     steps:
     - name: Checkout
@@ -26,7 +26,7 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get -y install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd fakeroot \
-        cpio git python-docutils gettext automake autopoint texinfo build-essential help2man \
+        cpio git python3 python3-docutils gettext automake autopoint texinfo build-essential help2man \
         pkg-config zlib1g-dev libgmp3-dev libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget gcc-multilib
     - name: Clone source code
       run: |
@@ -135,31 +135,31 @@ jobs:
         #系统相关
         echo "CONFIG_FIRMWARE_INCLUDE_HTTPS=y" >> .config    #路由器https访问
         echo "CONFIG_FIRMWARE_INCLUDE_CURL=y" >> .config     #利用URL语法在命令行与文件传输工具
-        echo "CONFIG_FIRMWARE_INCLUDE_HTOP=n" >> .config     #是Linux系统一个互动的进程查看器更加人性化。
+        echo "CONFIG_FIRMWARE_INCLUDE_HTOP=y" >> .config     #是Linux系统一个互动的进程查看器更加人性化。
         echo "CONFIG_FIRMWARE_INCLUDE_TTYD=y" >> .config     #基于浏览器的web shell工具（最好集成）
         echo "CONFIG_FIRMWARE_INCLUDE_NANO=y" >> .config     #nano是一个小型好用的文本编辑器
         echo "CONFIG_FIRMWARE_INCLUDE_IPERF3=y" >> .config   #iperf3是一个网络速度测试工具,支持多协议
         echo "CONFIG_FIRMWARE_INCLUDE_VLMCSD=y" >> .config   #KMS激活服务器，（按需求集成）
         echo "CONFIG_FIRMWARE_INCLUDE_LRZSZ=y" >> .config    #lrzsz是一款在linux里可代替ftp上传和下载的程序
-        echo "CONFIG_FIRMWARE_INCLUDE_MTR=n" >> .config      #MTR是一款非常好用的网络分析工具
+        echo "CONFIG_FIRMWARE_INCLUDE_MTR=y" >> .config      #MTR是一款非常好用的网络分析工具
         echo "CONFIG_FIRMWARE_INCLUDE_NAPT66=y" >> .config   #napt66是北邮学生开发IPV6支持较旧内核的Linux
         echo "CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=y" >> .config #openssl_exe 自动生成证书服务
         #网易云音乐
-        echo "CONFIG_FIRMWARE_INCLUDE_WYY=y" >> .config      #网易云解锁
-        echo "CONFIG_FIRMWARE_INCLUDE_WYYBIN=y" >> .config   #网易云解锁GO版本执行文件（4M多）不集成会自动下载
+        echo "CONFIG_FIRMWARE_INCLUDE_WYY=n" >> .config      #网易云解锁
+        echo "CONFIG_FIRMWARE_INCLUDE_WYYBIN=n" >> .config   #网易云解锁GO版本执行文件（4M多）不集成会自动下载
         #穿透服务
-        echo "CONFIG_FIRMWARE_INCLUDE_ALIDDNS=y" >> .config  #阿里DDNS
-        echo "CONFIG_FIRMWARE_INCLUDE_FRPC=y" >> .config     #内网穿透frpc
+        echo "CONFIG_FIRMWARE_INCLUDE_ALIDDNS=n" >> .config  #阿里DDNS
+        echo "CONFIG_FIRMWARE_INCLUDE_FRPC=n" >> .config     #内网穿透frpc
         echo "CONFIG_FIRMWARE_INCLUDE_FRPS=n" >> .config     #内网穿透frps
-        echo "CONFIG_FIRMIMARE_INCLUDE_XUPNPD=y" >> .config  #XUPNPD IPTV0.3M
-        echo "CONFIG_FIRMWARE_INCLUDE_ZEROTIER=y" >> .config #zerotier大小1.3M
-        echo "CONFIG_FIRMWARE_INCLUDE_WIREGUARD-GO=n" >> .config  #WIREGUARD-GO
-        echo "CONFIG_FIRMWARE_INCLUDE_WIREGUARD-TOOLS=n" >> .config #WIREGUARD-TOOLS
+        echo "CONFIG_FIRMIMARE_INCLUDE_XUPNPD=n" >> .config  #XUPNPD IPTV0.3M
+        echo "CONFIG_FIRMWARE_INCLUDE_ZEROTIER=n" >> .config #zerotier大小1.3M
+        #echo "CONFIG_FIRMWARE_INCLUDE_WIREGUARD-GO=n" >> .config  #WIREGUARD-GO
+        #echo "CONFIG_FIRMWARE_INCLUDE_WIREGUARD-TOOLS=n" >> .config #WIREGUARD-TOOLS
         #去广告
-        echo "CONFIG_FIRMWARE_INCLUDE_IPT2SOCKS=y" >> .config
-        echo "CONFIG_FIRMWARE_INCLUDE_ADBYBY=y" >> .config      #广告过滤adbyby plus+
-        echo "CONFIG_FIRMWARE_INCLUDE_KOOLPROXY=y" >> .config   #广告过滤koolproxy
-        echo "CONFIG_FIRMWARE_INCLUDE_ADGUARDHOME=y" >> .config #广告过滤adguardhome
+        echo "CONFIG_FIRMWARE_INCLUDE_IPT2SOCKS=n" >> .config
+        echo "CONFIG_FIRMWARE_INCLUDE_ADBYBY=n" >> .config      #广告过滤adbyby plus+
+        echo "CONFIG_FIRMWARE_INCLUDE_KOOLPROXY=n" >> .config   #广告过滤koolproxy
+        echo "CONFIG_FIRMWARE_INCLUDE_ADGUARDHOME=n" >> .config #广告过滤adguardhome
         #USB相关、下载软件
         echo "CONFIG_FIRMWARE_INCLUDE_QOS=y" >> .config        ##QOS~0.2MB
         echo "CONFIG_FIRMWARE_INCLUDE_SMBD=y" >> .config       #开启smaba和WINS服务
@@ -167,19 +167,19 @@ jobs:
         echo "CONFIG_FIRMWARE_INCLUDE_FTPD=y" >> .config       #开启FTP服务器
         echo "CONFIG_FIRMWARE_INCLUDE_CADDY=n" >> .config      #caddy，在线文件管理服务
         echo "CONFIG_FIRMWARE_INCLUDE_CADDYBIN=n" >> .config   #集成caddy执行文件13M,请注意固件大小
-        echo "CONFIG_FIRMWARE_INCLUDE_TRANSMISSION=y" >> .config #transmission服务1.5MB
-        echo "CONFIG_FIRMWARE_INCLUDE_TRANSMISSION_WEB_CONTROL=y" >> .config  #transmission网页端0.8MB
-        echo "CONFIG_FIRMWARE_INCLUDE_ARIA=y" >> .config              #aria服务3.5MB
-        echo "CONFIG_FIRMWARE_INCLUDE_ARIA_WEB_CONTROL=y" >> .config  #aira网页端0.7MB
+        echo "CONFIG_FIRMWARE_INCLUDE_TRANSMISSION=n" >> .config #transmission服务1.5MB
+        echo "CONFIG_FIRMWARE_INCLUDE_TRANSMISSION_WEB_CONTROL=n" >> .config  #transmission网页端0.8MB
+        echo "CONFIG_FIRMWARE_INCLUDE_ARIA=n" >> .config              #aria服务3.5MB
+        echo "CONFIG_FIRMWARE_INCLUDE_ARIA_WEB_CONTROL=n" >> .config  #aira网页端0.7MB
         #DNS加速服务
         echo "CONFIG_FIRMWARE_INCLUDE_SMARTDNS=y" >> .config     #SmartDns服务
         echo "CONFIG_FIRMWARE_INCLUDE_SMARTDNSBIN=y" >> .config  #SmartDns执行文件 
         echo "CONFIG_FIRMWARE_INCLUDE_DNSFORWARDER=n" >> .config #dns forwarder
         #科学上网
-        echo "CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS=y" >> .config #SS plus+，客户端
-        echo "CONFIG_FIRMWARE_INCLUDE_MICROSOCKS=y" >> .config  #microsocks，sock5代理
-        echo "CONFIG_FIRMWARE_INCLUDE_SSSERVER=y" >> .config    #SS server，服务端
-        echo "CONFIG_FIRMWARE_INCLUDE_V2RAY=y" >> .config       #集成v2ray 执行文件
+        echo "CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS=n" >> .config #SS plus+，客户端
+        echo "CONFIG_FIRMWARE_INCLUDE_MICROSOCKS=n" >> .config  #microsocks，sock5代理
+        echo "CONFIG_FIRMWARE_INCLUDE_SSSERVER=n" >> .config    #SS server，服务端
+        echo "CONFIG_FIRMWARE_INCLUDE_V2RAY=n" >> .config       #集成v2ray 执行文件
         echo "CONFIG_FIRMWARE_INCLUDE_TROJAN=n" >> .config      #集成trojan执行文件
         echo "CONFIG_FIRMWARE_INCLUDE_3PROXY=n" >> .config     #代理3proxy
         #校园网相关
