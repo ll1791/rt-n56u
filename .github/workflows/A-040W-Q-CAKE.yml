@@ -216,7 +216,7 @@ jobs:
       uses: actions/upload-artifact@master
       if: always()
       with:
-        name: Padavan_A-040Q-Q
+        name: Padavan
         path: /opt/images
 
     - name: Release
@@ -224,9 +224,8 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         body: |
-           > ### ![](https://img.shields.io/badge/%E7%BC%96%E8%AF%91%E6%97%B6%E9%97%B4-${{ env.build_time }}-8267?logo=github&labelColor=%E9%A1%BB)![](https://img.shields.io/github/downloads/${{ github.repository }}/${{ env.tag }}/total?label=%E4%B8%8B%E8%BD%BD%E6%AC%A1%E6%95%B0&logo=github)
-             
-              PADAVAN
-        tag_name: ${{ env.tag }}
+           > ### $TNAME - $build_time
+
+        tag_name: $tag
         files: /opt/images/*
         
