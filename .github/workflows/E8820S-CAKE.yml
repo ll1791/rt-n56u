@@ -231,7 +231,8 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         body: |
-           > ### $TNAME - $build_time
+           *** ${ TNAME }-${ TZ.build_time }
 
-        tag_name: $tag
+        tag_name: ${ TNAME }
         files: /opt/images/*
+        
