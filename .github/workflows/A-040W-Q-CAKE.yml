@@ -211,7 +211,7 @@ jobs:
         sudo mv -f images/*.trx /opt/images/
         #cp -f .config /opt/images/${TNAME}.config
         echo "build_time=$(date '+%Y年%m月%d日%H:%M:%S' | jq -sRr @uri)" >> $GITHUB_ENV
-        echo "tag=$(date '+%Y-%m-%d')" >> $GITHUB_ENV
+        #echo "tag=$(date '+%Y-%m-%d')" >> $GITHUB_ENV
     - name : Upload packages
       uses: actions/upload-artifact@master
       if: always()
@@ -224,8 +224,8 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         body: |
-           > ### $TNAME - $build_time
+           *** ${ TNAME }-${ TZ.build_time }
 
-        tag_name: $tag
+        tag_name: ${ TNAME }
         files: /opt/images/*
         
