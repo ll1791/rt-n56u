@@ -67,8 +67,7 @@ jobs:
         sed -i '/CONFIG_FIRMWARE_INCLUDE_SFTP/d' .config
         sed -i '/CONFIG_FIRMWARE_INCLUDE_TCPDUMP/d' .config
         sed -i '/CONFIG_FIRMWARE_INCLUDE_SHORTCUT_FE/d' .config
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_QOS/d' .config
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_SCH_CAKE/d' .config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_SQM/d' .config
         ###网易云音乐
         sed -i '/CONFIG_FIRMWARE_INCLUDE_WYY/d' .config      ###网易云解锁
         sed -i '/CONFIG_FIRMWARE_INCLUDE_WYYBIN/d' .config   ###网易云解锁GO版本执行文件
@@ -151,8 +150,7 @@ jobs:
         echo "CONFIG_FIRMWARE_INCLUDE_SFTP=y" >> .config      #SSH文件传输协议
         echo "CONFIG_FIRMWARE_INCLUDE_TCPDUMP=y" >> .config   #包含 "tcpdump" 工具
         echo "CONFIG_FIRMWARE_INCLUDE_SHORTCUT_FE=y" >> .config  #软加速
-        echo "CONFIG_FIRMWARE_INCLUDE_QOS=y" >> .config      #包含网络 QoS 调度模块
-        echo "CONFIG_FIRMWARE_INCLUDE_SCH_CAKE=y" >> .config
+        echo "CONFIG_FIRMWARE_INCLUDE_SQM=y" >> $m.config #SQM
         #网易云音乐 
         echo "CONFIG_FIRMWARE_INCLUDE_WYY=n" >> .config      #网易云解锁
         echo "CONFIG_FIRMWARE_INCLUDE_WYYBIN=n" >> .config   #网易云解锁GO版本执行文件（4M多）不集成会自动下载
