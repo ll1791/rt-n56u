@@ -67,8 +67,7 @@ jobs:
         sed -i '/CONFIG_FIRMWARE_INCLUDE_SFTP/d' .config
         sed -i '/CONFIG_FIRMWARE_INCLUDE_TCPDUMP/d' .config
         sed -i '/CONFIG_FIRMWARE_INCLUDE_SHORTCUT_FE/d' .config
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_QOS/d' .config
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_SCH_CAKE/d' .config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_SQM/d' .config
         ###网易云音乐
         sed -i '/CONFIG_FIRMWARE_INCLUDE_WYY/d' .config      ###网易云解锁
         sed -i '/CONFIG_FIRMWARE_INCLUDE_WYYBIN/d' .config   ###网易云解锁GO版本执行文件
